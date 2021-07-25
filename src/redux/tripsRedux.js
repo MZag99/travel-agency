@@ -2,6 +2,18 @@
 
 export const getAllTrips = ({trips}) => trips;
 
+function compareCost(a, b) {
+  const costa = a.cost.replace('$','');
+  const costb = b.cost.replace('$','');
+  if(parseInt(costa) < parseInt(costb)){
+    return -1;
+  }
+  if(parseInt(costa) > parseInt(costb)){
+    return 1;
+  }
+  return 0;
+}
+
 export const getFilteredTrips = ({trips, filters}) => {
   let output = trips;
 
@@ -12,11 +24,25 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
 
   // TODO - filter by duration
-
+  output = output.filter(trip => trip.days <= filters.duration.to && trip.days >= filters.duration.from);
   // TODO - filter by tags
-
+  if(filters.tags.length > 0){
+    const matching = [];
+    for(let trip of output){
+      let flag = filters.tags.length;
+      for(let tag of filters.tags){
+        if(trip.tags.indexOf(tag) != -1){
+          flag--;
+        }
+      }
+      if(flag == 0){
+        matching.push(trip);
+      }
+    }
+    output = matching;
+  }
   // TODO - sort by cost descending (most expensive goes first)
-
+  output.sort(compareCost).reverse();
   return output;
 };
 
