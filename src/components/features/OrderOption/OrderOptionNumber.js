@@ -5,20 +5,18 @@ import PropTypes from 'prop-types';
 
 const OrderOptionNumber = ({currentValue, limits, setOptionValue, price}) => {
   return (
-    <div>
-      <div className={styles.number}>
-        <input type='number' 
-          className={styles.inputSmall} 
-          value={currentValue}
-          min={limits.min}
-          max={limits.max}
-          onChange={event => {
-            setOptionValue(event.currentTarget.value);
-          }}
-        >
-        </input>
-        {` ${formatPrice(price)}`}
-      </div>
+    <div className={styles.number}>
+      <input type='number' 
+        className={styles.inputSmall} 
+        value={currentValue}
+        min={limits.min}
+        max={limits.max}
+        onChange={event => {
+          setOptionValue(event.currentTarget.value);
+        }}
+      >
+      </input>
+      {` ${formatPrice(price)}`}
     </div>
   );
 };

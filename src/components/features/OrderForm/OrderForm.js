@@ -13,7 +13,6 @@ const OrderForm = ({tripCost, setOrderOption, options}) => {
           <OrderOption 
             setOrderOption={setOrderOption}
             currentValue={options[option.id]}
-            {...options}
             {...option}/>
         </Col>
       ))}
