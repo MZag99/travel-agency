@@ -16,7 +16,7 @@ describe('Component Hero', () => {
     const expectedImage = 'image.jpg';
     const component = shallow(<Hero titleText={expectedTitle} imageSrc={expectedImage} />);
   
-    const renderedTitle = component.find('.title').text();
+    const renderedTitle = component.find('.title').text(); //dupa
     expect(renderedTitle).toEqual(expectedTitle);
     expect(component.find('.image').prop('src')).toEqual(expectedImage);
   });
